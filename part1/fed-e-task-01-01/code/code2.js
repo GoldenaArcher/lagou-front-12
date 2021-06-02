@@ -75,16 +75,19 @@ console.log(firstName(cars)); // 最终返回 Ferrari FF (第一个 car 的 name
   把 fp.map(), _average() 组合而成
   
   参考代码:
-    let averageDollarValue = function (cars) {
-        let dollar_values = fp.map(function (car) {
-            return car.dollar_value
-        }, cars)
-        return _average(dollar_values)
-    }
-*/
+  */
+
 let _average = function (xs) {
   return fp.reduce(fp.add, 0, xs) / xs.length;
 }; // <- 无须改动
+
+// let avgAmount = function (cars) {
+//   let dollar_values = fp.map(function (car) {
+//     return car.dollar_value;
+//   }, cars);
+//   return _average(dollar_values);
+// };
+// console.log(avgAmount(cars)); // 790900
 
 const averageDollarValue = fp.flowRight(
   _average,
@@ -106,12 +109,15 @@ console.log(averageDollarValue(cars)); // 最终返回 790700
 // 把非字母数字替换为下划线
 let _underscore = fp.replace(/\W+/g, "_"); // <--无须改动
 
-const sanitizeNames = fp.flowRight(
-  fp.map(fp.toLower),
-  fp.map(_underscore),
-  fp.map(fp.prop("name"))
+// 改车的名字吗？
+const sanitizeNames = fp.map(
+  fp.flowRight(fp.toLower, _underscore, fp.prop("name"))
 );
 
 // 1.实现 sanitizeNames 函数
 // 2.打印测试
 console.log(sanitizeNames(cars));
+
+// 还是……如果只是改数组里面的字符串的话，就把 ["Hello World"]) => ["hello_world"]
+const sanitizeNames2 = fp.map(fp.flowRight(fp.toLower, _underscore));
+console.log(sanitizeNames2(["Hello World"]));

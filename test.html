@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>滚动菜单联动</title>
+    <style>
+      .container {
+        height: 100vh;
+        display: flex;
+      }
+
+      body {
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+      }
+
+      #left-el {
+        flex: 1;
+        background-color: rgb(249, 190, 173);
+        overflow-y: auto;
+        height: 100%;
+      }
+
+      #right-el {
+        flex: 4;
+        background-color: rgb(177, 234, 252);
+        overflow-y: auto;
+        height: 100%;
+      }
+
+      .menu-item {
+        height: 50px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .menu-item-active {
+        height: 50px;
+        background-color: #fff;
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .content {
+        height: 720px;
+        background-color: #fff;
+        margin: 8px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="left-el"></div>
+      <div id="right-el"></div>
+    </div>
+  </body>
+</html>
+<script>
+  function useState(target) {
+    return new Proxy(target, {
+      set(obj, prop, new_value) {
+        obj[prop] = new_value;
+        switch (prop) {
+          case "index":
+            state.arr.forEach((item) => {
+              console.log(
+                new_value === item ? "menu-item-active" : "menu-item"
+              );
+              document
+                .getElementById("menu" + item)
+                .setAttribute(
+                  "class",
+                  new_value === item ? "menu-item-active" : "menu-item"
+                );
+            });
+            break;
+          default:
+            break;
+        }
+        return;
+      },
+    });
+  }
+
+  let state = useState({
+    arr: [],
+    index: -1, // active index
+    distance: 0,
+  });
+
+  for (let i = 0; i < 20; i++) {
+    state.arr.push(i);
+  }
+
+  function initData() {
+    const leftEl = document.getElementById("left-el");
+    state.arr.forEach((i) => {
+      leftEl.innerHTML += `<div class="menu-item" onclick="selectedHandler(${i})" id="menu${i}">Menu${
+        i + 1
+      }</div>`;
+    });
+    const rightEl = document.getElementById("right-el");
+    state.arr.forEach((i) => {
+      rightEl.innerHTML += `<div class="content" id="content${i}">Content${
+        i + 1
+      }</div>`;
+    });
+    state.index = 0;
+  }
+
+  initData();
+
+  function selectedHandler(index) {
+    state.index = index;
+    const rightEl = document.getElementById("right-el");
+    const final_distance = index * 728;
+    const step = 182;
+    const scrollAnimation = () => {
+      setTimeout(() => {
+        if (state.distance < final_distance) {
+          state.distance += step;
+          rightEl.scrollTop = state.distance;
+          scrollAnimation();
+        } else if (state.distance > final_distance) {
+          state.distance -= step;
+          rightEl.scrollTop = state.distance;
+          scrollAnimation();
+        } else;
+      }, 100);
+    };
+    scrollAnimation();
+  }
+
+  document.getElementById("right-el").addEventListener("scroll", function () {
+    const index = Math.floor(this.scrollTop / 728);
+    state.index = index;
+  });
+</script>

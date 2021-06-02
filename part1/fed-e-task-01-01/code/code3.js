@@ -1,6 +1,6 @@
-const fp = require('lodash/fp')
-const { Maybe, Container } = require('./support')
-
+const fp = require("lodash/fp");
+// 我好像没这个文件……
+const { Maybe, Container } = require("./support");
 
 /*
   练习1: 
@@ -9,13 +9,13 @@ const { Maybe, Container } = require('./support')
   让函子里的值 增加1
 */
 // 1.创建一个函子
-let maybe = Maybe.of([5, 6, 1])
+let maybe = Maybe.of([5, 6, 1]);
 
 // 2.实现 ex1 函数
+const ex1 = fp.map(fp.add(1));
 
 // 3.调用测试
-console.log( maybe.map(ex1) )  // Maybe { _value: [ 6, 7, 2 ] }
-
+console.log(maybe.map(ex1)); // Maybe { _value: [ 6, 7, 2 ] }
 
 /*
   练习2:
@@ -23,13 +23,13 @@ console.log( maybe.map(ex1) )  // Maybe { _value: [ 6, 7, 2 ] }
   函数中使用 fp.first 获取列表的第一个元素
 */
 // 1.生成一个函子
-let xs = Container.of(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do'])
+let xs = Container.of(["do", "ray", "me", "fa", "so", "la", "ti", "do"]);
 
 // 2.实现 ex2
+const ex2 = fp.first;
 
 // 3.测试打印
-// console.log( xs.map(ex2) )  // Container { _value: 'do' }
-
+console.log(xs.map(ex2)); // Container { _value: 'do' }
 
 /*
   练习3:
@@ -37,28 +37,33 @@ let xs = Container.of(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do'])
   使用 safeProp 和 fp.first 找到 user 的名字的首字母
 */
 let safeProp = fp.curry(function (x, o) {
-	return Maybe.of(o[x])
-})
-let user = { id: 2, name: 'Albert'}
+  return Maybe.of(o[x]);
+});
+
+let user = { id: 2, name: "Albert" };
 
 // 1.实现 ex3
+const ex3 = safeProp("name", user);
 
 // 2.测试打印
-console.log( ex3() ) // Maybe { _value: 'A' }
-
+console.log(ex3.map(fp.first)); // Maybe { _value: 'A' }
 
 /*
   练习4:
   使用 Maybe 重写 ex4, 不要有 if 语句
-  let ex4 = function (n) {
-    if (n) {
-      return parseInt(n)
-    }
-  }
+  */
+// let ex4 = function (n) {
+//   if (n) {
+//     return parseInt(n);
+//   }
+// };
+/*
   功能描述:
   把参数中数值部分转为整数,并且以函子形式返回
   换言之, 提取字符串里的数字作为返回结果函子的 _value 值
 */
+
+const ex4 = val => Maybe.of(val).map(parseInt)
 
 // 1.实现 ex4 函数
 
