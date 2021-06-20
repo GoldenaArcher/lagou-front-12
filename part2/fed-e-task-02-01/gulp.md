@@ -90,7 +90,7 @@ module.exports = {
 此时在命令行运行样式的编译命令：
 
 ```bash
-gulp-sample> yarn gulp style
+pages-boilerplate> yarn gulp style
 ```
 
 写出的结果就生成了：
@@ -102,7 +102,7 @@ gulp-sample> yarn gulp style
 基础的 IO 实现了，现在就开始实现将 scss 转译为 css 的功能，这个功能的视线需要借助插件来完成，所以先安装插件：
 
 ```bash
-gulp-sample> yarn add gulp-sass --dev
+pages-boilerplate> yarn add gulp-sass --dev
 ```
 
 介入 gulp-sass 的使用，大部分 gulp-插件 的使用都是通过 pipe 函数，在写入流之前实现。并且大部分的提供的功能是函数，直接调用即可。
@@ -156,7 +156,7 @@ const style = () => {
 - 依赖下载
 
   ```bash
-  gulp-sample> yarn add gulp-babel --dev
+  pages-boilerplate> yarn add gulp-babel --dev
   pages-boilerplate> yarn add @babel/core @babel/preset-env --dev
   ```
 
