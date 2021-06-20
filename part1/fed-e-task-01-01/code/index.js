@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-06-01 23:53:51
- * @LastEditTime: 2021-06-02 03:02:59
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \lagoufed-e-task\part1\fed-e-task-01-01\code\index.js
- */
 const MyPromise = require("./MyPromise");
 
 const promise = new MyPromise((resolve, reject) => {
