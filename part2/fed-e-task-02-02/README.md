@@ -1,24 +1,14 @@
-# 一、简答题
+# part2-2
 
-#### 1、Webpack 的构建流程主要有哪些环节？如果可以请尽可能详尽的描述 Webpack 打包的整个过程。
+## 一、简答题
 
-　
+### 1、Webpack 的构建流程主要有哪些环节？如果可以请尽可能详尽的描述 Webpack 打包的整个过程
 
-　
+### 2、Loader 和 Plugin 有哪些不同？请描述一下开发 Loader 和 Plugin 的思路
 
-　
+## 二、编程题
 
-#### 2、Loader 和 Plugin 有哪些不同？请描述一下开发 Loader 和 Plugin 的思路。
-
-　
-
-　
-
-　
-
-# 二、编程题
-
-#### 1、使用 Webpack 实现 Vue 项目打包任务
+### 1、使用 Webpack 实现 Vue 项目打包任务
 
 具体任务及说明：
 
@@ -28,9 +18,7 @@
 4. 这里的要求就是直接使用 webpack 以及你所了解的周边工具、Loader、Plugin 还原这个项目的打包任务
 5. 尽可能的使用上所有你了解到的功能和特性
 
-
-
-**提示：(开始前必看)**
+<b>提示：(开始前必看)</b>
 
 在视频录制后，webpack 版本以迅雷不及掩耳的速度升级到 5，相应 webpack-cli、webpack-dev-server 都有改变。
 
@@ -39,17 +27,15 @@
 ```json
 // package.json 中部分代码
 "scripts": {
-	"serve": "webpack serve --config webpack.config.js"
+  "serve": "webpack serve --config webpack.config.js"
 }
 ```
 
 vue 文件中 使用 style-loader 即可
 
-**其它问题, 可先到 https://www.npmjs.com/ 上搜索查看相应包的最新版本的配置示例, 可以解决大部分问题.**
+<b>其它问题, 可先到 <https://www.npmjs.com/> 上搜索查看相应包的最新版本的配置示例, 可以解决大部分问题.</b>
 
-
-
-#### 作业要求
+## 作业要求
 
 本次作业中的编程题要求大家完成相应代码后
 
