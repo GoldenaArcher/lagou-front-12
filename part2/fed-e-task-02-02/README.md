@@ -121,6 +121,14 @@ vue 文件中 使用 style-loader 即可
 
 **其它问题, 可先到 <https://www.npmjs.com/> 上搜索查看相应包的最新版本的配置示例, 可以解决大部分问题.**
 
+配置文件：
+
+- [common](./code/vue-app-base/webpack.common.js)
+- [dev](./code/vue-app-base/webpack.dev.js)
+- [prod](./code/vue-app-base/webpack.prod.js)
+
+说明文档：[read here](./explanation.md)
+
 ## 作业要求
 
 本次作业中的编程题要求大家完成相应代码后
